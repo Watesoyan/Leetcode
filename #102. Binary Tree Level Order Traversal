@@ -10,28 +10,26 @@ class Solution:
         from collections import deque
         
         result = []
-        tmproots = [root]
-        nextroots = []
+        tmproots = []
+        nextroots = [root]
         tmpvals = []
         
-        while True:
-            tmproot = tmproots.pop()
-            tmpvals.append(tmproot.val)
+        while len(nextroots) != 0:
+            nextroots.reverse()
+            tmproots = nextroots
+            nextroots = []
+        
+            while len(tmproots) != 0:
+                tmproot = tmproots.pop()
+                tmpvals.append(tmproot.val)
             
-            if tmproot.left is not None:
-                nextroots.append(tmproot.left)
+                if tmproot.left is not None:
+                    nextroots.append(tmproot.left)
             
-            if tmproot.right is not None:
-                nextroots.append(tmproot.right)
-             
-            if len(tmproots) == 0:
-                result.append(tmpvals)
-                tmpvals = []
-                if len(nextroots) != 0: 
-                    nextroots.reverse()
-                    tmproots = nextroots
-                    nextroots = []
-                else:
-                    break
+                if tmproot.right is not None:
+                    nextroots.append(tmproot.right)
+            
+            result.append(tmpvals)
+            tmpvals = []
             
         return result
