@@ -1,0 +1,52 @@
+class Solution:
+    def postorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        result = []
+        stackm = []
+        stackr = []
+        flag = 0
+        p = root
+
+        while True:
+            while flag is 0:
+                if p is None:
+                    flag = 1
+                    break
+                
+                L = p.left is None
+                R = p.right is None
+                
+                if L and R:
+                    result.append(p.val)
+                    flag = 2
+                    break
+                
+                stackm.append(p.val)
+                stackr.append(p.right)
+                
+                if not L:
+                    p = p.left
+                else:
+                    flag = 2
+            
+            while flag is 1:
+                if len(stackm) is 0:
+                    return result
+                result.append(stackm.pop())
+                flag = 2
+                
+            while flag is 2:
+                if len(stackr) is 0:
+                    flag = 1
+                    break
+                r = stackr.pop()
+                
+                if r is not None:
+                    p = r
+                    stackr.append(None)
+                    flag = 0
+                else:
+                    flag = 1
