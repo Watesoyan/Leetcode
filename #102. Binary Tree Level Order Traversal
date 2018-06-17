@@ -9,11 +9,11 @@ class Solution:
         
         result = []
         nextroots = [root]
-        tmpvals = []
         
         while len(nextroots) != 0:
             tmproots = nextroots
             nextroots = []
+            tmpvals = []
         
             for tmproot in tmproots:
                 tmpvals.append(tmproot.val)
@@ -25,6 +25,5 @@ class Solution:
                     nextroots.append(tmproot.right)
             
             result.append(tmpvals)
-            tmpvals = []
             
         return result
