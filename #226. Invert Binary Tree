@@ -1,0 +1,14 @@
+class Solution:
+    def invertTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
+        if root is None:
+            return root
+        
+        t = TreeNode(root.val)
+        t.left = self.invertTree(root.right)
+        t.right = self.invertTree(root.left)
+        
+        return t
