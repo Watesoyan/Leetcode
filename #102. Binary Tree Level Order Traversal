@@ -10,7 +10,7 @@ class Solution:
         result = []
         nextroots = [root]
         
-        while len(nextroots) != 0:
+        while len(nextroots) > 0:
             tmproots = nextroots
             nextroots = []
             tmpvals = []
