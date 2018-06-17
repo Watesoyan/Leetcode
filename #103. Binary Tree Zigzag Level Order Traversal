@@ -7,8 +7,6 @@ class Solution:
         if root is None:
             return []
         
-        from collections import deque
-        
         layeridx = 1
         result = []
         tmproots = []
@@ -16,23 +14,34 @@ class Solution:
         tmpvals = []
         
         while len(nextroots) != 0:
+            if layeridx % 2 == 1:
+                nextroots.reverse()
+                tmproots = nextroots
+                nextroots = []
             
-            nextroots.reverse()
-            tmproots = nextroots
-            nextroots = []
-        
-            while len(tmproots) != 0:
-                tmproot = tmproots.pop()
-                tmpvals.append(tmproot.val)
+                for tmproot in tmproots:
+                    tmpvals.append(tmproot.val)
+                
+                    if tmproot.left is not None:
+                        nextroots.append(tmproot.left)
             
-                if tmproot.left is not None:
-                    nextroots.append(tmproot.left)
+                    if tmproot.right is not None:
+                        nextroots.append(tmproot.right)
             
-                if tmproot.right is not None:
-                    nextroots.append(tmproot.right)
+            else:
+                nextroots.reverse()
+                tmproots = nextroots
+                nextroots = []
+                    
+                for tmproot in tmproots:
+                    tmpvals.append(tmproot.val)
+                    
+                    if tmproot.right is not None:
+                        nextroots.append(tmproot.right)
             
-            if layeridx % 2 == 0:
-                tmpvals.reverse()
+                    if tmproot.left is not None:
+                        nextroots.append(tmproot.left)
+            
             result.append(tmpvals)
             tmpvals = []
             layeridx += 1
