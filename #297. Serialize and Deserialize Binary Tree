@@ -42,7 +42,6 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
-        return data
         if len(data) is 0:
             return None
         
