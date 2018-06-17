@@ -7,20 +7,16 @@ class Solution:
         if root is None:
             return []
         
-        from collections import deque
-        
         result = []
         tmproots = []
         nextroots = [root]
         tmpvals = []
         
         while len(nextroots) != 0:
-            nextroots.reverse()
             tmproots = nextroots
             nextroots = []
         
-            while len(tmproots) != 0:
-                tmproot = tmproots.pop()
+            for tmproot in tmproots:
                 tmpvals.append(tmproot.val)
             
                 if tmproot.left is not None:
