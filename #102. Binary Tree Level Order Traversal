@@ -7,23 +7,25 @@ class Solution:
         if root is None:
             return []
         
-        result = []
-        nextroots = [root]
+        nextroots = [root]  
+        result = [[root.val]]
         
-        while len(nextroots) > 0:
+        while True:
             tmproots = nextroots
             nextroots = []
             tmpvals = []
-        
+            
             for tmproot in tmproots:
-                tmpvals.append(tmproot.val)
             
                 if tmproot.left is not None:
+                    tmpvals.append(tmproot.left.val)
                     nextroots.append(tmproot.left)
             
                 if tmproot.right is not None:
+                    tmpvals.append(tmproot.right.val)
                     nextroots.append(tmproot.right)
             
-            result.append(tmpvals)
-            
-        return result
+            if len(tmpvals) is 0:
+                return result
+            else:
+                result.append(tmpvals)
