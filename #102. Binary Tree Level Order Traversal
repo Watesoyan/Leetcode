@@ -8,7 +8,6 @@ class Solution:
             return []
         
         result = []
-        tmproots = []
         nextroots = [root]
         tmpvals = []
         
