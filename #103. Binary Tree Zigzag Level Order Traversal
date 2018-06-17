@@ -9,7 +9,6 @@ class Solution:
         
         layeridx = 1
         result = []
-        tmproots = []
         nextroots = [root]
         tmpvals = []
         
