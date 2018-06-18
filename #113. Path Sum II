@@ -11,12 +11,20 @@ class Solution:
         rootval = root.val
         nextsum = sum - rootval
         
-        if root.left is None and root.right is None:
+        L = root.left is None
+        R = root.right is None
+        
+        if L and R:
             if nextsum == 0:
                 return [[rootval]]
             else:
                 return []
-        else:
-            leftpath = [[rootval]+path for path in self.pathSum(root.left, nextsum)]
-            rightpath = [[rootval]+path for path in self.pathSum(root.right, nextsum)]
-            return leftpath + rightpath
+        
+        if L:
+            return [[rootval]+path for path in self.pathSum(root.right, nextsum)]
+        if R:
+            return [[rootval]+path for path in self.pathSum(root.left, nextsum)]
+        
+        leftpath = [[rootval]+path for path in self.pathSum(root.left, nextsum)]
+        rightpath = [[rootval]+path for path in self.pathSum(root.right, nextsum)]
+        return leftpath + rightpath
