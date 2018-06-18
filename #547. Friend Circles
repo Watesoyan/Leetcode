@@ -14,7 +14,7 @@ class Solution:
         # n>=3：
         idx = 0
         
-        while len(notfound) != 0:
+        while not len(notfound):
             if len(notfound) == 1:
                 return idx + 1
             
@@ -22,7 +22,7 @@ class Solution:
             friends = [i]
             newfriends = [i]
             
-            while len(newfriends) != 0:
+            while not len(newfriends):
                 i = newfriends.pop()
                 for j in notfound:
                     if i != j and j not in friends and M[i][j] == 1:
