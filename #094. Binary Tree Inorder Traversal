@@ -1,5 +1,23 @@
 class Solution:
-    def inorderTraversal(self, root):
+    # with recurrence
+    def inorderTraversal1(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        result = []
+        
+        if root is None:
+            return result
+        
+        result += self.inorderTraversal(root.left)
+        result.append(root.val)
+        result += self.inorderTraversal(root.right)
+        
+        return result
+    
+    # without recurrence
+    def inorderTraversal2(self, root):
         """
         :type root: TreeNode
         :rtype: List[int]
