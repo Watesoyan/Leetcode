@@ -25,6 +25,6 @@ class Solution:
         if R:
             return [[rootval]+path for path in self.pathSum(root.left, nextsum)]
         
-        leftpath = [[rootval]+path for path in self.pathSum(root.left, nextsum)]
-        rightpath = [[rootval]+path for path in self.pathSum(root.right, nextsum)]
-        return leftpath + rightpath
+        tmplist = self.pathSum(root.left, nextsum) + self.pathSum(root.right, nextsum)
+        
+        return  [[rootval]+path for path in tmplist]
