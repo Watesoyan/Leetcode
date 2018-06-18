@@ -1,5 +1,23 @@
 class Solution:
-    def preorderTraversal(self, root):
+    # with recurrence
+    def preorderTraversal1(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        result = []
+        
+        if root is None:
+            return result
+        
+        result.append(root.val)
+        result += self.preorderTraversal(root.left)
+        result += self.preorderTraversal(root.right)
+        
+        return result
+    
+    # without recurrence
+    def preorderTraversal2(self, root):
         """
         :type root: TreeNode
         :rtype: List[int]
