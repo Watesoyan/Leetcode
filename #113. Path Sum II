@@ -1,0 +1,39 @@
+class Solution:
+    def pathSum(self, root, sum):
+        """
+        :type root: TreeNode
+        :type sum: int
+        :rtype: List[List[int]]
+        """
+        if root is None:
+            return []
+        
+        flag = 0
+        
+        left = []
+        right = []
+        
+        tmpleft = root.left
+        if tmpleft is not None:
+            flag = 1
+            if tmpleft.left is None and tmpleft.right is None:
+                if root.val + tmpleft.val == sum:
+                    left = [[root.val, tmpleft.val]]
+            else:
+                left = [[root.val]+path for path in self.pathSum(tmpleft, sum - root.val)]
+        
+        tmpright = root.right
+        if tmpright is not None:
+            flag = 1
+            if tmpright.left is None and tmpright.right is None:
+                if root.val + tmpright.val == sum:
+                    right = [[root.val, tmpright.val]]
+            else:
+                right = [[root.val]+path for path in self.pathSum(tmpright, sum - root.val)]
+        
+        if flag:
+            return left + right
+        elif root.val == sum:
+            return [[root.val]]
+        else:
+            return []
