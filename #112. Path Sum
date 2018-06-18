@@ -8,29 +8,10 @@ class Solution:
         if root is None:
             return False
         
-        flag = 0
+        d = sum - root.val
         
-        tmpleft = root.left
-        if tmpleft is not None:
-            flag = 1
-            if tmpleft.left is None and tmpleft.right is None:
-                if root.val + tmpleft.val == sum:
-                    return True
-            else:
-                if self.hasPathSum(tmpleft, sum - root.val):
-                    return True
+        if root.left is None and root.right is None:
+            return d == 0
         
-        tmpright = root.right
-        if tmpright is not None:
-            flag = 1
-            if tmpright.left is None and tmpright.right is None:
-                if root.val + tmpright.val == sum:
-                    return True
-            else:
-                if self.hasPathSum(tmpright, sum - root.val):
-                    return True
-        
-        if flag == 1:
-            return False
         else:
-            return root.val == sum
+            return self.hasPathSum(root.left, d) or self.hasPathSum(root.right, d)
