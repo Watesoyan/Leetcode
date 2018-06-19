@@ -16,7 +16,7 @@ class Solution:
         
         return result
     
-    # with out recurrence
+    # without recurrence
     def postorderTraversal2(self, root):
         """
         :type root: TreeNode
