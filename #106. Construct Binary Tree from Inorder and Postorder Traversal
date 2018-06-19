@@ -1,0 +1,58 @@
+ss Solution(object):
+    def buildTree(self, inorder, postorder):
+        """
+        :type inorder: List[int]
+        :type postorder: List[int]
+        :rtype: TreeNode
+        """
+        """
+        postorder: [left right root]
+        inorder:  [left root right]
+        """ 
+        
+        if len(postorder) == 0:
+            return None
+        
+        post_idx_stack = [(0,len(postorder))]
+        offset_stack = [0]
+        
+        nodes = list(map(TreeNode, postorder))
+        
+        while len(post_idx_stack) > 0:
+            
+            post_min, post_max = post_idx_stack.pop()
+            n = post_max - post_min
+            offset = offset_stack.pop()
+            in_min, in_max = post_min + offset, post_max + offset
+            
+            tmp_root = nodes[post_max - 1]
+            
+            tmp_left = None
+            tmp_right = None
+            
+            if n != 1: 
+                
+                _postorder = postorder[post_min : post_max]
+                _inorder = inorder[in_min : in_max]
+                
+                # use most of time
+                for i in range(n):
+                    if _inorder[i] == _postorder[n - 1]:
+                        root_idx = i
+                   
+                if root_idx != 0 :
+                    tmp_left = nodes[post_min + root_idx - 1]
+                    if root_idx != 1 : 
+                        post_idx_stack.append((post_min, post_min + root_idx))
+                        offset_stack.append(in_min - post_min)
+                    
+                if root_idx != n - 1 :
+                    tmp_right = nodes[post_max - 2]
+                    if root_idx != n - 2:
+                        post_idx_stack.append((post_min + root_idx, post_max - 1))
+                        offset_stack.append(in_min - post_min + 1)
+            
+            tmp_root.left = tmp_left
+            tmp_root.right = tmp_right
+            
+        return nodes[-1]
