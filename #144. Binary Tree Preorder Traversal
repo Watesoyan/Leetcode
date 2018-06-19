@@ -25,34 +25,19 @@ class Solution:
         result = []
         stack = []
         p = root
-        flag = 0
         
         while True:
-            while flag is 0:
-                if p is None:
-                    flag = 1
-                    break
-                
-                L = p.left is None
-                R = p.right is None
-                
-                if L and R:
-                    result.append(p.val)
-                    flag = 1
-                    break
-                
+            while p is not None:
                 result.append(p.val)
-                
-                if L:
-                    p = p.right 
-                elif R:
-                    p = p.left
-                else:
-                    stack.append(p.right)
-                    p = p.left
-                    
-            while flag is 1:
-                if len(stack) is 0:
-                    return result
+                stack.append(p)
+                p = p.left
+            
+            if len(stack) > 0:
                 p = stack.pop()
-                flag = 0
+            else:
+                return result
+            
+            if p.right is not None:
+                p = p.right
+            else:
+                p = None # reinitialize p
