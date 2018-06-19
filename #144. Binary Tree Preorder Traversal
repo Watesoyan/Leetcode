@@ -22,6 +22,7 @@ class Solution:
         :type root: TreeNode
         :rtype: List[int]
         """
+        
         result = []
         stack = []
         p = root
@@ -37,7 +38,8 @@ class Solution:
             else:
                 return result
             
-            if p.right is not None:
-                p = p.right
-            else:
+            # remember that p has been visited
+            if p.right is None:
                 p = None # reinitialize p
+            else:
+                p = p.right
