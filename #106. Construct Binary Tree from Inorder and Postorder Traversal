@@ -1,4 +1,4 @@
-ss Solution(object):
+class Solution(object):
     def buildTree(self, inorder, postorder):
         """
         :type inorder: List[int]
@@ -13,8 +13,12 @@ ss Solution(object):
         if len(postorder) == 0:
             return None
         
-        post_idx_stack = [(0,len(postorder))]
+        L = len(postorder)
+        
+        post_idx_stack = [(0, L)]
         offset_stack = [0]
+        
+        hash_inorder = {inorder[i]:i for i in range(L)}
         
         nodes = list(map(TreeNode, postorder))
         
@@ -36,21 +40,19 @@ ss Solution(object):
                 _inorder = inorder[in_min : in_max]
                 
                 # use most of time
-                for i in range(n):
-                    if _inorder[i] == _postorder[n - 1]:
-                        root_idx = i
+                root_idx = hash_inorder[_postorder[-1]] - offset
                    
-                if root_idx != 0 :
-                    tmp_left = nodes[post_min + root_idx - 1]
-                    if root_idx != 1 : 
-                        post_idx_stack.append((post_min, post_min + root_idx))
-                        offset_stack.append(in_min - post_min)
+                if root_idx != post_min :
+                    tmp_left = nodes[root_idx - 1]
+                    if root_idx != post_min + 1 : 
+                        post_idx_stack.append((post_min, root_idx))
+                        offset_stack.append(offset)
                     
-                if root_idx != n - 1 :
+                if root_idx != post_max - 1 :
                     tmp_right = nodes[post_max - 2]
-                    if root_idx != n - 2:
-                        post_idx_stack.append((post_min + root_idx, post_max - 1))
-                        offset_stack.append(in_min - post_min + 1)
+                    if root_idx != post_max - 2:
+                        post_idx_stack.append((root_idx, post_max - 1))
+                        offset_stack.append(offset + 1)
             
             tmp_root.left = tmp_left
             tmp_root.right = tmp_right
