@@ -27,7 +27,6 @@ class Solution(object):
             post_min, post_max = post_idx_stack.pop()
             n = post_max - post_min
             offset = offset_stack.pop()
-            in_min, in_max = post_min + offset, post_max + offset
             
             tmp_root = nodes[post_max - 1]
             
@@ -37,9 +36,7 @@ class Solution(object):
             if n != 1: 
                 
                 _postorder = postorder[post_min : post_max]
-                _inorder = inorder[in_min : in_max]
                 
-                # use most of time
                 root_idx = hash_inorder[_postorder[-1]] - offset
                    
                 if root_idx != post_min :
