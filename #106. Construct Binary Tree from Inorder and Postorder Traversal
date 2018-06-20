@@ -25,7 +25,7 @@ class Solution(object):
         while len(post_idx_stack) > 0:
             
             post_min, post_max = post_idx_stack.pop()
-            n = post_max - post_min
+            
             offset = offset_stack.pop()
             
             tmp_root = nodes[post_max - 1]
@@ -33,11 +33,10 @@ class Solution(object):
             tmp_left = None
             tmp_right = None
             
-            if n != 1: 
+            if post_max - post_min != 1: 
                 
-                _postorder = postorder[post_min : post_max]
-                
-                root_idx = hash_inorder[_postorder[-1]] - offset
+                # use most of time
+                root_idx = hash_inorder[postorder[post_max-1]] - offset
                    
                 if root_idx != post_min :
                     tmp_left = nodes[root_idx - 1]
