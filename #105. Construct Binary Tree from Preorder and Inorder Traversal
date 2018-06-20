@@ -1,4 +1,4 @@
-# takes about 52 ms in LeetCodes benchmark
+# takes about 52 ms in LeetCode benchmark
 
 class Solution(object):
     def buildTree(self, preorder, inorder):
