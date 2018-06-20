@@ -1,5 +1,5 @@
 class Solution:
-    # based on union-find set  
+    # based on union-find set, faster  
     def findCircleNum1(self, M):
         """
         :type M: List[List[int]]
