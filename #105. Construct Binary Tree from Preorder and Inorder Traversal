@@ -27,7 +27,6 @@ class Solution(object):
             pre_min, pre_max = pre_idx_stack.pop()
             n = pre_max - pre_min
             offset = offset_stack.pop()
-            in_min, in_max = pre_min + offset, pre_max + offset
             
             tmp_root = nodes[pre_min]
             
@@ -36,10 +35,7 @@ class Solution(object):
             
             if n != 1: 
                 
-                _preorder = preorder[pre_min : pre_max]
-                _inorder = inorder[in_min : in_max]
-                
-                root_idx = hash_inorder[_preorder[0]] - offset
+                root_idx = hash_inorder[preorder[pre_min]] - offset
                      
                 if root_idx != pre_min :
                     tmp_left = nodes[pre_min + 1]
@@ -56,4 +52,4 @@ class Solution(object):
             tmp_root.left = tmp_left
             tmp_root.right = tmp_right
             
-        return nodes[0]  
+        return nodes[0]
