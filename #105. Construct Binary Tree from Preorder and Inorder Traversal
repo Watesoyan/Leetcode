@@ -21,9 +21,9 @@ class Solution(object):
         hash_inorder = {inorder[i]:i for i in range(L)}
         
         nodes = list(map(TreeNode, preorder))
-        j=0
+
         while len(pre_idx_stack) > 0:
-            j+= 1
+
             pre_min, pre_max = pre_idx_stack.pop()
             n = pre_max - pre_min
             offset = offset_stack.pop()
