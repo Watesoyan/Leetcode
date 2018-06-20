@@ -1,6 +1,6 @@
 class Solution:
-    # based on union-find set, faster  
-    def findCircleNum1(self, M):
+    # based on union-find set 
+    def findCircleNum(self, M):
         """
         :type M: List[List[int]]
         :rtype: int
@@ -38,43 +38,3 @@ class Solution:
                             pre[j_root] = i_root
         
         return circle_num
-    
-    # direct 
-    def findCircleNum2(self, M):
-        """
-        :type M: List[List[int]]
-        :rtype: int
-        """
-        n = len(M)
-        
-        if n == 1:
-            return 1
-        
-        notfound = list(range(n))
-        
-        # n>=3：
-        idx = 0
-        
-        while len(notfound) != 0:
-            if len(notfound) == 1:
-                return idx + 1
-            
-            i = notfound[0]
-            friends = [i]
-            newfriends = [i]
-            
-            while len(newfriends) != 0:
-                i = newfriends.pop()
-                for j in notfound:
-                    if i != j and j not in friends and M[i][j] == 1:
-                        friends.append(j)
-                        newfriends.append(j)
-            
-            idx += 1
-            tmp = []
-            for v in notfound:
-                if v not in friends:
-                    tmp.append(v)
-            notfound = tmp
-            
-        return idx
