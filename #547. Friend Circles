@@ -1,5 +1,46 @@
 class Solution:
-    def findCircleNum(self, M):
+    # based on union-find set  
+    def findCircleNum1(self, M):
+        """
+        :type M: List[List[int]]
+        :rtype: int
+        """
+        n = len(M)
+        circle_num = n
+        pre = {i:i for i in range(n)}
+        
+        for i in range(n):
+            for j in range(i,n):
+                if M[i][j] :
+                    
+                    # find root of i, using path splitting 
+                    i_rank = 0
+                    i_pre = i
+                    while pre[i_pre] is not i_pre:
+                        i_pre = pre[pre[i_pre]]
+                        i_rank += 1
+                    i_root = i_pre
+                    
+                    # find root of j, using path splitting
+                    j_rank = 0
+                    j_pre = j
+                    while pre[j_pre] is not j_pre:
+                        j_pre = pre[pre[j_pre]]
+                        j_rank += 1
+                    j_root = j_pre
+                    
+                    # merge 
+                    if i_root != j_root:
+                        circle_num -= 1
+                        if i_rank < j_rank:
+                            pre[i_root] = j_root
+                        else:
+                            pre[j_root] = i_root
+        
+        return circle_num
+    
+    # direct 
+    def findCircleNum2(self, M):
         """
         :type M: List[List[int]]
         :rtype: int
@@ -14,7 +55,7 @@ class Solution:
         # n>=3：
         idx = 0
         
-        while not len(notfound):
+        while len(notfound) != 0:
             if len(notfound) == 1:
                 return idx + 1
             
@@ -22,7 +63,7 @@ class Solution:
             friends = [i]
             newfriends = [i]
             
-            while not len(newfriends):
+            while len(newfriends) != 0:
                 i = newfriends.pop()
                 for j in notfound:
                     if i != j and j not in friends and M[i][j] == 1:
@@ -36,4 +77,4 @@ class Solution:
                     tmp.append(v)
             notfound = tmp
             
-        return idx   
+        return idx
