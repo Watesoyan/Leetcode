@@ -1,0 +1,23 @@
+class Solution:
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        ptr1 = ptr2 = head           # ptr2 follows ptr1, separation by (n-1) elements 
+        
+        for i in range(n) :          # ptr1 points to the (n-1) th node
+            ptr1 = ptr1.next
+        
+        if ptr1 is None:             # when n is the length of list
+            head = head.next
+            return head
+        
+        while ptr1.next is not None: 
+            ptr1 = ptr1.next
+            ptr2 = ptr2.next
+            
+        ptr2.next = ptr2.next.next
+        
+        return head
