@@ -14,6 +14,7 @@ class Solution(object):
             slow_ptr = slow_ptr.next
         
         slow_ptr2 = head
+        
         while slow_ptr2 is not slow_ptr:
             slow_ptr  = slow_ptr.next
             slow_ptr2 = slow_ptr2.next
