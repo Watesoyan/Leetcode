@@ -1,4 +1,5 @@
 class Solution:
+    # takes 76 ms in LeetCode benchmark
     def longestMountain(self, A):
         """
         :type A: List[int]
