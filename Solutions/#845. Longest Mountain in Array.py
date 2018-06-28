@@ -7,9 +7,6 @@ class Solution:
         """
         n = len(A)
         
-        if n <= 2:
-            return 0
-        
         longest = 0
         flag1 = 0                            # set flag when going up 
         flag2 = 0                            # set flag when going down after going up 
