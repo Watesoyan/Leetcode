@@ -1,4 +1,5 @@
 class Solution(object):
+    # takes 88 ms in LeetCode Benchmark
     def numIslands(self, grid):
         """
         :type grid: List[List[str]]
