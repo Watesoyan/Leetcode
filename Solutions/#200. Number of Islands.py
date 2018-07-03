@@ -23,23 +23,22 @@ class Solution(object):
                     if i != 0 and grid[i-1][j] == '1':
                         stack.append((i,j))
                         i -= 1
-                        grid[i][j] = '0'
                     elif i != m-1 and grid[i+1][j] == '1':
                         stack.append((i,j))
                         i += 1
-                        grid[i][j] = '0'
                     elif j != 0 and grid[i][j-1] == '1':
                         stack.append((i,j))
                         j -= 1
-                        grid[i][j] = '0'
                     elif j != n-1 and grid[i][j+1] == '1':
                         stack.append((i,j))
                         j += 1
-                        grid[i][j] = '0'
                     elif len(stack) > 0:
                         (i, j) = stack.pop()
+                        continue
                     else:
                         break
+                    grid[i][j] = '0'
+                
                 num_Islands += 1
                 
         return num_Islands
