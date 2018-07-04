@@ -1,25 +1,32 @@
 class Solution(object):
+    # union-find set version, takes 36 ms in LeetCode Benchmark
+    def find(self, root, x):
+        val = root.get(x)
+        if val is None:
+            root[x] = x
+            return x, 0
+        else:
+            n = 0
+            while x != val:
+                x = root[x]
+                val = root[x]
+                n += 1
+            return x, n
+            
     def findRedundantConnection(self, edges):
         """
         :type edges: List[List[int]]
         :rtype: List[int]
         """
-        memory = set(edges[0])
-        stack = edges[1:]
+        root = {}
         
-        while True:
-            n = len(stack)
-            for i in range(n):
-                [u, v] = stack[i]
-                if u in memory and v in memory:
-                    if u > v:
-                        u, v = v, u
-                    return [u, v]
-                elif u in memory:
-                    memory.add(v)
-                    del stack[i]
-                    break
-                elif v in memory:
-                    memory.add(u)
-                    del stack[i]
-                    break
+        for u, v in edges:
+            ur, nu = self.find(root, u)
+            vr, nv = self.find(root, v)
+            if ur == vr:
+                return [u, v]
+            elif nu > nv:
+                root[vr] = ur
+            else:
+                root[ur] = vr
+        return None
