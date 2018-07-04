@@ -7,7 +7,10 @@ class Solution:
         :rtype: int
         """
         """
-        1 <= N <= 100, 1 <= K <= N, 1 <= len(times) <= 6000, 1 <= u, v <= N, 1 <= w <= 100
+        times[i] = [u, v, w], 1 <= len(times) <= 6000
+        u, v: vertex label, 1 <= u, v <= N
+        w   : edge weight,  1 <= w <= 100
+        1 <= N <= 100, 1 <= K <= N
         """
         overflow = 101
         delay = [overflow]*N
