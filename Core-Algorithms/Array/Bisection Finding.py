@@ -1,10 +1,10 @@
 """
 bisect_find(array, x)
 :input params:
-	array: `List`
+	array: ascending-order sorted, `List`
 	x: `int` or `float`
 :output params:
-	ix: if x is found in array, return ix so that array[ix] == x, else return -1
+	ix: if x is found in array, return small index ix satisfying array[ix] == x, else return -1
 """
 def bisect_find(array, x):
 	n = len(array)
@@ -14,10 +14,9 @@ def bisect_find(array, x):
 		mid = (nmin + nmax) // 2
 		if array[mid] < x:
 			nmin = mid + 1
-		elif x < array[mid]:
-			nmax = mid
 		else:
-			return mid
+			nmax = mid
+		
 	if array[nmin] == x:
 		return nmin
 	else:
