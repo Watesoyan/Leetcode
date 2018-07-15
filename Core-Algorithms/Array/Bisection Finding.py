@@ -4,7 +4,7 @@ bisect_find(array, x)
 	array: ascending-order sorted, `List`
 	x: `int` or `float`
 :output params:
-	ix: if x is found in array, return small index ix satisfying array[ix] == x, else return -1
+	ix: if `x` is found in array, return the first index `ix` satisfying `array[ix] == x`, else return -1
 """
 def bisect_find(array, x):
 	n = len(array)
