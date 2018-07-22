@@ -5,3 +5,4 @@ def BubbleSort(a):
           if a[j] > a[j+1]:
               N += 1
               a[j], a[j+1] = a[j+1], a[j]       
+  return
