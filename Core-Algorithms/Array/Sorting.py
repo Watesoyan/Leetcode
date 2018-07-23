@@ -57,7 +57,7 @@ unstable, worst case: time: O(n^2) space: O(n log n)
 """
 
 """
-MergeSort divides array into parts and merge them iteratively (i = 1,...,n-1)
+MergeSort divides array into parts and merge them iteratively
 stable, worst case: time: O(n log n) space: O(1)
 """
 
