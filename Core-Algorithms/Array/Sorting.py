@@ -86,7 +86,7 @@ def siftdown(heap, start):
         ql = (q - start) << 1
         rootval = heap[q]
         left_ix  = start + ql + 1
-        right_ix = start + ql + 2
+        right_ix = left_ix + 1
         
         if left_ix < n and rootval > heap[left_ix]:
             swap_elem(heap, q, left_ix)
