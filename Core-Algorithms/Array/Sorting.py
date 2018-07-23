@@ -62,6 +62,6 @@ stable, worst case: time: O(n log n) space: O(1)
 """
 
 """
-HeapSort divides array into two parts according to pivot element 
+HeapSort builds a heap and pop elements 
 unstable, worst case: time: O(n log n) space: O(1)
 """
