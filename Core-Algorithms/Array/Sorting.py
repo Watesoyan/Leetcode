@@ -1,3 +1,6 @@
+def swap_elem(List, i, j):
+    List[i], List[j] = List[j], List[i]
+
 # Small array sorting
 
 """
@@ -65,3 +68,42 @@ stable, worst case: time: O(n log n) space: O(1)
 HeapSort builds a heap and pop elements 
 unstable, worst case: time: O(n log n) space: O(1)
 """
+def siftup(heap, end):
+    q = end
+    qr = q >> 1
+    
+    while q > qr and heap[q] < heap[qr]:
+        swap_elem(heap, q, qr)
+        q = qr
+        qr = q >> 1
+    return
+
+def siftdown(heap, start):
+    n = len(heap)
+    q = start
+    
+    while True:
+        ql = (q - start) << 1
+        rootval = heap[q]
+        left_ix  = start + ql + 1
+        right_ix = start + ql + 2
+        
+        if left_ix < n and rootval > heap[left_ix]:
+            swap_elem(heap, q, left_ix)
+            q = left_ix
+        
+        elif right_ix < n and rootval > heap[right_ix]:
+            swap_elem(heap, q, right_ix)
+            q = right_ix
+        
+        else:
+            break
+    return
+
+def HeapSort(List):
+    n = len(List)
+    for i in range(1, n):
+        siftup(List, i)
+    for i in range(1, n-1):
+        siftdown(List, i)
+    return List
