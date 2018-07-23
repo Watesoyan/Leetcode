@@ -13,7 +13,7 @@ def BubbleSort(array):
     for i in range(n-1):
         for j in range(n-i-1):
             if array[j] > array[j+1]:
-                array[j], array[j+1] = array[j+1], array[j]       
+                swap_elem(array, j, j+1)      
     return array
 
 """
@@ -30,7 +30,7 @@ def SelectionSort(array):
             if array[min_ix] > array[j]:
                 min_ix = j
         if i != min_ix:
-            array[i], array[min_ix] = array[min_ix], array[i]
+            swap_elem(array, i, min_ix)
     return array
 
 """
