@@ -9,7 +9,7 @@ class Solution:
         
         if n > 0:
             i, j = 0, len(matrix[0])-1
-            while j > -1 and i < len(matrix):
+            while j > -1 and i < n:
                 if matrix[i][j] == target:
                     return True
                 elif matrix[i][j] < target:
