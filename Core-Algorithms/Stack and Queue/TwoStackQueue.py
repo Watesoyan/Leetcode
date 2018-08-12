@@ -1,11 +1,11 @@
-class Solution:
+class TwoStackQueue:
     def __init__(self):      
         self.stack = []
         self.buff = []
         return
     
     def __repr__(self):
-        return "Stack({0},{1})".format(self.stack, self.buff)
+        return "TwoStackQueue({0},{1})".format(self.stack, self.buff)
         
     def push(self, node):
         self.stack.append(node)
@@ -21,5 +21,5 @@ class Solution:
                         self.buff.append(self.stack.pop())
             return self.buff.pop()
         except IndexError:
-            raise IndexError("pop from empty stack")
+            raise IndexError("pop from empty queue")
             return
