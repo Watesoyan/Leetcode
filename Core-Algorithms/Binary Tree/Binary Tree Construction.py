@@ -1,4 +1,4 @@
-
+# build tree according to its preorder and inorder
 def buildTree(self, preorder, inorder):
 	"""
 	:type preorder: List[int]
@@ -30,8 +30,7 @@ def buildTree(self, preorder, inorder):
 		
 		tmp_root = nodes[pre_min]
 		
-		tmp_left = None
-		tmp_right = None
+		tmp_left = tmp_right = None
 		
 		if pre_max - pre_min != 1: 
 			
