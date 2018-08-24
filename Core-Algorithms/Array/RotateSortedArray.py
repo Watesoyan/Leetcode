@@ -1,4 +1,6 @@
 def biSearch(Array, target):
+    if len(Array) == 0:
+        return -1
     left, right = 0, len(Array)-1
     while left != right:
         mid = (left + right) >> 1
@@ -23,12 +25,11 @@ def minNumberIndexInRotateSortedArray(rotateSortedArray):
 
 def searchInRotateSortedArray(rotateSortedArray, target):
     if len(rotateSortedArray) == 0:
-            return -1
-    
+        return -1
     min_ix = minNumberIndexInRotateSortedArray(rotateSortedArray)
-    
+    n = len(rotateSortedArray)
     if target == rotateSortedArray[-1]:
-        return len(rotateSortedArray)
+        return n - 1
     elif target < rotateSortedArray[-1]:
         offset = biSearch(rotateSortedArray[min_ix:-1], target)
         if offset == -1:
