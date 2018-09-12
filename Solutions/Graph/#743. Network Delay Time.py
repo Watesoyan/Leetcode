@@ -24,12 +24,11 @@ class Solution:
             
         flag = 1
         
-        while flag == 1:
+        while flag:
             
             flag = 0
             
             for u, v, w in modif_times:
-                
                 # d(K,V) < inf && d(K,V) > d(K,U) + d(U,V)
                 if delay[u-1] < overflow and delay[v-1] > delay[u-1] + w: 
                     delay[v-1] = delay[u-1] + w

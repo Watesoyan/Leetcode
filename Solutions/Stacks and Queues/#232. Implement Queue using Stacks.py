@@ -1,3 +1,5 @@
+# two stacks version
+
 class MyQueue:
     # implement queue by two stacks
     def __init__(self):
