@@ -1,4 +1,3 @@
-
 """
 Pre-order Traversal
 """
